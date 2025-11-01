@@ -593,66 +593,150 @@ body.light-mode .theme-toggle {
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+  /* --- Perbaikan Header & Navigasi --- */
   header {
-    flex-direction: column;
     padding: 15px 25px;
+    flex-direction: row; /* Tetap horizontal */
+    justify-content: space-between; /* Logo di kiri, Hamburger di kanan */
   }
 
-  nav ul {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  /* Sembunyikan menu navigasi default */
+  #nav-links {
     position: fixed;
     top: 0;
-    right: -100%;
-    height: 100vh;
+    right: -100%; /* Awalnya disembunyikan di kanan */
     width: 60%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.95);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
     transition: 0.5s ease;
+    padding: 0; /* Hapus padding */
   }
 
-  nav ul.show {
+  /* Tampilkan menu saat hamburger diklik */
+  #nav-links.show {
     right: 0;
   }
 
+  #nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  #nav-links ul li a {
+    font-size: 1.5rem;
+  }
+
+  /* Tampilkan tombol hamburger */
   .hamburger {
     display: flex;
   }
 
+  /* Posisikan tombol tema di sebelah hamburger */
   .theme-toggle {
-    position: absolute;
-    right: 60px;
+    position: static; /* Kembalikan ke posisi normal */
+    margin-left: 15px; /* Beri jarak dari hamburger */
   }
 
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
+  /* --- Perbaikan Hero Section --- */
   .hero {
     flex-direction: column;
     text-align: center;
+    padding-top: 80px; /* Kurangi padding atas */
     gap: 2rem;
   }
 
-  .hero .image img {
-    width: 200px;
+  .hero .content h2 {
+    font-size: 2rem;
   }
 
+  /* Perbaikan Ukuran Foto */
+  .image {
+    width: 200px; /* Ukuran yang lebih kecil untuk mobile */
+    height: 200px;
+  }
+
+  /* --- Perbaikan Section Umum --- */
   section {
     padding: 60px 20px;
   }
 
-  form {
-    width: 90%;
+  /* --- Perbaikan Skills --- */
+  .skills-container {
+    gap: 20px;
   }
 
+  .skill {
+    width: 120px;
+    padding: 15px;
+  }
+
+  /* --- Perbaikan Project Cards --- */
+  .project-list {
+    gap: 20px;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* --- Perbaikan Testimonials --- */
   .testimonial-card {
     padding: 1.5rem;
   }
 
   .testimonial-card p {
+    font-size: 1rem;
+  }
+
+  /* --- Perbaikan Form --- */
+  form {
+    width: 90%;
+  }
+
+  /* --- Perbaikan Footer --- */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .footer-info p {
+    font-size: 0.9rem;
+    max-width: 90%;
+  }
+
+  .footer-social {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-social a {
+    font-size: 1.2rem;
+  }
+
+  /* --- Perbaikan Scroll To Top Button --- */
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
     font-size: 1rem;
   }
 }
