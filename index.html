@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andika Pratama - Portfolio</title>
-  <link rel="stylesheet" href="/portfolio/css/style.css">
-  <link rel="icon" type="image/jpg" href="/portfolio/assets/images/foto-pribadi.jpg">
+  <!-- PERBAIKAN: Menghapus /portfolio/ di awal path -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/jpg" href="assets/images/foto-pribadi.jpg">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <script src="https://kit.fontawesome.com/a2e00a6c8b.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <canvas id="particleCanvas"></canvas>
@@ -49,6 +50,17 @@
       <h2>Hi, I'm <span>Andika Pratama</span></h2>
       <h3 class="typewriter"></h3>
       <p>Student | Web Developer | Future Innovator</p>
+
+      <!-- Hero Social Links -->
+      <div class="hero-social">
+        <a href="https://www.instagram.com/ndikaaprtmaaa/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@ndikaacyy_" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+
       <a href="#projects" class="btn">Lihat Karyaku</a>
     </div>
     <div class="image" data-aos="fade-left">
@@ -70,13 +82,6 @@
       Di luar dunia coding, saya senang mengeksplorasi desain UI/UX, membaca artikel teknologi, dan mengerjakan proyek-proyek kecil yang menantang kemampuan saya.
       Saya percaya bahwa setiap baris kode adalah langkah kecil menuju hasil besar yang berarti.
     </p>
-
-    <!-- Download CV Button -->
-    <div class="about-actions">
-      <a href="assets/docs/andika_pratama_cv.pdf" class="btn" download>
-        <i class="fas fa-download"></i> Download CV
-      </a>
-    </div>
   </section>
 
   <!-- Skills -->
@@ -93,125 +98,38 @@
   <section id="projects" class="section reveal parallax" style="background-image: url('assets/images/background.jpg');">
     <h2 class="section-title">Projects</h2>
 
-    <!-- Filter Buttons -->
     <div class="filter-buttons">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="portfolio">Portfolio</button>
-      <button class="filter-btn" data-filter="desain">Desain</button>
       <button class="filter-btn" data-filter="aplikasi">Aplikasi</button>
+      <button class="filter-btn" data-filter="game">Game</button>
       <button class="filter-btn" data-filter="toko">Toko Online</button>
+      <button class="filter-btn" data-filter="comingsoon">Coming Soon</button>
     </div>
 
     <div class="project-list">
-      <!-- Project Card 1 -->
-      <div class="project-card reveal"
-      data-category="portfolio"
-      data-title="Portfolio Website"
-      data-description="Website pribadi yang menampilkan profil, keahlian, dan proyek-proyek saya. Dibangun dengan fokus pada desain modern, animasi yang halus, dan performa yang cepat untuk memberikan pengalaman pengguna terbaik."
-      data-tech="HTML, CSS, JavaScript, AOS, PHP"
-      data-github="https://github.com/usernameanda/portfolio"
-      data-live="index.html">
-        <div class="project-image">
-          <i class="fas fa-code"></i>
-        </div>
-        <div class="project-content">
-          <h3>Portfolio Website</h3>
-          <p>Website pribadi yang menampilkan profil, keahlian, dan proyek saya.</p>
-          <div class="project-tech">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Card 2 -->
-      <div class="project-card reveal"
-      data-category="desain"
-      data-title="Web Design Modern"
-      data-description="Sebuah proyek desain web yang mengeksplorasi penggunaan warna neon, efek parallax, dan animasi interaktif untuk menciptakan tampilan yang futuristik dan memukau."
-      data-tech="HTML, CSS, JavaScript"
-      data-github="#"
-      data-live="#">
-        <div class="project-image">
-          <i class="fas fa-palette"></i>
-        </div>
-        <div class="project-content">
-          <h3>Web Design</h3>
-          <p>Desain modern dengan animasi interaktif dan warna neon hijau.</p>
-          <div class="project-tech">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Card 3 (Desain) -->
-      <div class="project-card reveal"
-      data-category="desain"
-      data-title="UI Kit Mobile Banking"
-      data-description="Sebuah proyek desain UI/UX untuk aplikasi mobile banking dengan fokus pada kemudahan penggunaan dan keamanan visual. Menggunakan warna biru yang menenangkan."
-      data-tech="Figma, Adobe XD"
-      data-github="#"
-      data-live="#">
-        <div class="project-image">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <div class="project-content">
-          <h3>UI Kit Mobile Banking</h3>
-          <p>Desain UI/UX untuk aplikasi mobile banking yang modern dan aman.</p>
-          <div class="project-tech">
-            <span>Figma</span>
-            <span>Adobe XD</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Card 4 (Aplikasi - Placeholder) -->
-      <div class="project-card reveal"
-      data-category="aplikasi"
-      data-title="Aplikasi Cuaca"
-      data-description="Aplikasi web untuk menampilkan informasi cuaca real-time dari berbagai kota di dunia. Dilengkapi dengan animasi ikon yang menarik."
-      data-tech="HTML, CSS, JavaScript, API"
-      data-github="#"
-      data-live="#">
-        <div class="project-image">
-          <i class="fas fa-cloud-sun"></i>
-        </div>
-        <div class="project-content">
-          <h3>Aplikasi Cuaca</h3>
-          <p>Aplikasi web untuk cek cuaca real-time dengan animasi menarik.</p>
-          <div class="project-tech">
-            <span>HTML</span>
-            <span>JavaScript</span>
-            <span>API</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Card 5 (Toko Online - Placeholder) -->
-      <div class="project-card reveal"
-      data-category="toko"
-      data-title="Toko Online Kopi"
-      data-description="Website e-commerce sederhana untuk menjual berbagai jenis kopi biji. Fitur keranjang belanja dan halaman checkout."
-      data-tech="HTML, CSS, PHP, MySQL"
-      data-github="#"
-      data-live="#">
-        <div class="project-image">
-          <i class="fas fa-shopping-cart"></i>
-        </div>
-        <div class="project-content">
-          <h3>Toko Online Kopi</h3>
-          <p>Website e-commerce untuk jualan berbagai jenis kopi biji.</p>
-          <div class="project-tech">
-            <span>HTML</span>
-            <span>PHP</span>
-            <span>MySQL</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- Kotak Portfolio Website -->
+<div class="project-card reveal"
+data-category="portfolio"
+data-title="Portfolio Website"
+data-description="Website pribadi yang menampilkan profil, keahlian, dan proyek-proyek saya. Dibangun dengan fokus pada desain modern, animasi yang halus, dan performa yang cepat untuk memberikan pengalaman pengguna terbaik."
+data-tech="HTML, CSS, JavaScript, AOS, PHP"
+data-github="https://github.com/usernameanda/portfolio"
+data-live="index.html">
+<div class="project-image">
+<i class="fas fa-code"></i>
+</div>
+<div class="project-content">
+<h3>Portfolio Website</h3>
+<p>Website pribadi yang menampilkan profil, keahlian, dan proyek saya.</p>
+<div class="project-tech">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+</div>
+</div>
+</div>
+</div>
   </section>
 
   <!-- Testimonials -->
@@ -249,13 +167,53 @@
   <!-- Contact -->
   <section id="contact" class="section reveal">
     <h2 class="section-title">Contact</h2>
-    <form id="contactForm">
-      <input type="text" name="Nama" placeholder="Nama" required>
-      <input type="email" name="Email" placeholder="Email" required>
-      <textarea name="Pesan" placeholder="Pesan" required></textarea>
-      <button type="submit">Kirim</button>
-      <div id="responseMessage"></div>
-    </form>
+    <div class="contact-container">
+      <!-- Contact Info Column -->
+      <div class="contact-info" data-aos="fade-right">
+        <h3>Hubungi Saya</h3>
+        <p>Punya ide proyek yang menarik? Atau sekadar ingin berkenalan? Saya siap untuk mendengarkan dan membantu mewujudkan visi digital Anda.</p>
+
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:andiikapratamaa7@gmail.com">andiikapratamaa7@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:+6283846457614">+62 838-4645-7614</a>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Pacitan, Indonesia</span>
+        </div>
+      </div>
+
+      <!-- Contact Form Column -->
+      <div class="contact-form-wrapper" data-aos="fade-left">
+        <form id="contactForm" action="send_email.php" method="POST">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="nama" name="Nama" required>
+            <label for="nama">Your Name</label>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="Email" required>
+            <label for="email">Your Email</label>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-comment-dots"></i>
+            <textarea id="pesan" name="Pesan" rows="5" required></textarea>
+            <label for="pesan">Your Message</label>
+            <span class="char-count">0 / 300</span>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <div id="responseMessage"></div>
+        </form>
+      </div>
+    </div>
   </section>
 
   <!-- === PROJECT DETAIL MODAL === -->
@@ -293,7 +251,7 @@
 
       <div class="footer-social">
         <a href="https://www.instagram.com/ndikaaprtmaaa/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:anda@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:andiikapratamaa7@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.youtube.com/@ndikaacyy_" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
         <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
       </div>
@@ -308,8 +266,9 @@
   <button id="scrollTopBtn" class="scroll-top"><i class="fas fa-arrow-up"></i></button>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="/portfolio/js/main.js"></script>
-  <script src="/portfolio/js/script.js"></script>
+  <!-- PERBAIKAN: Menghapus /portfolio/ di awal path -->
+  <script src="js/main.js"></script>
+  <script src="js/script.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
