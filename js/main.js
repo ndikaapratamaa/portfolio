@@ -80,27 +80,33 @@ const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-schem
 
 // Initialize theme safely
 (function initTheme() {
-  if (!themeToggle) return;
-  if (savedTheme === "light") {
-    document.body.classList.add("light-mode");
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  } else if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-    document.body.classList.remove("light-mode");
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  } else {
-    // default: dark
-    document.body.classList.remove("light-mode");
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  }
+if (!themeToggle) return;
+if (savedTheme === "light") {
+document.body.classList.add("light-mode");
+themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+} else if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+document.body.classList.remove("light-mode");
+themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+} else {
+// default: dark
+document.body.classList.remove("light-mode");
+themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+}
 })();
 
 if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    const isLight = document.body.classList.contains("light-mode");
-    themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-  });
+themeToggle.addEventListener("click", () => {
+// Tambah animasi rotasi
+themeToggle.style.transform = 'rotate(360deg)';
+setTimeout(() => {
+themeToggle.style.transform = 'rotate(0deg)';
+}, 300);
+
+document.body.classList.toggle("light-mode");
+const isLight = document.body.classList.contains("light-mode");
+themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+localStorage.setItem("theme", isLight ? "light" : "dark");
+});
 }
 
 /* -------- neon-bg particles (hero canvas) -------- */
@@ -397,6 +403,14 @@ function closeModal() {
 // Event Listener untuk setiap kartu proyek
 projectCards.forEach(card => {
   card.addEventListener('click', () => {
+    // CEK KHUSUS UNTUK PORTFOLIO WEBSITE
+    if (card.dataset.title === "Portfolio Website") {
+      // Scroll langsung ke atas dengan halus
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return; // Hentikan fungsi di sini, jangan buka modal
+    }
+
+    // Untuk proyek lainnya (kalau ada), buka modal seperti biasa
     openModal(card);
   });
 });
@@ -412,6 +426,9 @@ document.addEventListener('keydown', (e) => {
 
 // === PROJECT FILTER FUNCTIONALITY ===
 const filterButtons = document.querySelectorAll('.filter-btn');
+const projectItems = document.querySelectorAll('.project-item');
+
+// Note: projectCards is already declared in the modal section above
 
 // Tambahkan event listener ke setiap tombol filter
 filterButtons.forEach(button => {
@@ -444,7 +461,17 @@ filterButtons.forEach(button => {
         card.style.display = 'none';
       }
     });
+
+    // 5. Filter juga project-simple-list items
+    projectItems.forEach(item => {
+      const category = item.getAttribute('data-category');
+
+      if (filter === 'all' || category === filter) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
   });
 });
-
 
