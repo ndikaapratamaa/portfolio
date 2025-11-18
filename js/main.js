@@ -335,84 +335,80 @@ const modalCloseBtn = document.querySelector('.modal-close-btn');
 
 // Fungsi untuk membuka modal
 function openModal(card) {
-  const title = card.dataset.title;
-  const description = card.dataset.description;
-  const techArray = card.dataset.tech.split(',');
-  const githubLink = card.dataset.github;
-  const liveLink = card.dataset.live;
-  const iconElement = card.querySelector('.project-image i');
+const title = card.dataset.title;
+const description = card.dataset.description;
+const techArray = card.dataset.tech.split(',');
+const githubLink = card.dataset.github;
+const liveLink = card.dataset.live;
+const iconElement = card.querySelector('.project-image i');
 
-  // --- LOGIKA CERDASNYA DIMULAI DI SINI ---
-  if (liveLink === '#') {
-    // JIKA LINK LIVE DEMO MASIH '#', TAMPILKAN PESAN "SEDANG DIKERJAKAN"
-    document.getElementById('modal-title').textContent = 'Sedang Dalam Tahap Pengembangan';
-    document.getElementById('modal-description').textContent = 'Proyek ini sedang dalam tahap pengerjaan. Terima kasih atas minat Anda, silakan cek kembali lain kali untuk melihat versi live-nya!';
+// Set modal content dari data di HTML
+document.getElementById('modal-title').textContent = title;
+document.getElementById('modal-description').textContent = description;
+document.getElementById('modal-github-link').href = githubLink;
+document.getElementById('modal-live-link').href = liveLink;
 
-    // Ganti ikon jadi ikon 'tools' (perkakas)
-    const modalImageContainer = document.getElementById('modal-image');
-    modalImageContainer.innerHTML = '<i class="fas fa-tools"></i>';
+// Tampilkan ikon dari kartu
+const modalImageContainer = document.getElementById('modal-image');
+modalImageContainer.innerHTML = '';
+if (iconElement) {
+modalImageContainer.appendChild(iconElement.cloneNode(true));
+}
 
-    // Sembunyikan bagian teknologi dan footer (karena belum relevan)
-    document.querySelector('.modal-tech').style.display = 'none';
-    document.querySelector('.modal-footer').style.display = 'none';
+// Isi daftar teknologi
+const techListContainer = document.getElementById('modal-tech-list');
+techListContainer.innerHTML = '';
+techArray.forEach(tech => {
+const span = document.createElement('span');
+span.textContent = tech.trim();
+techListContainer.appendChild(span);
+});
 
-    // Buat overlay transparan agar background tidak gelap
-    modalOverlay.style.backgroundColor = 'transparent';
-  } else {
-    // JIKA SUDAH ADA LINK LIVE, TAMPILKAN DETAIL PROYEK SEPERTI BIASA
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-description').textContent = description;
-    document.getElementById('modal-github-link').href = githubLink;
-    document.getElementById('modal-live-link').href = liveLink;
+// --- Cek apakah ini proyek "Sedang Dikerjakan" ---
+if (title === "Sedang Dikerjakan") {
+// Sembunyikan bagian teknologi, tapi tampilkan footer untuk link live
+document.querySelector('.modal-tech').style.display = 'none';
+document.querySelector('.modal-footer').style.display = 'flex';
+// Buat overlay lebih terang
+modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+} else {
+// Tampilkan semua bagian untuk proyek lain
+document.querySelector('.modal-tech').style.display = 'block';
+document.querySelector('.modal-footer').style.display = 'flex';
+// Kembalikan overlay gelap
+modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+}
 
-    // Tampilkan ikon asli dari kartu
-    const modalImageContainer = document.getElementById('modal-image');
-    modalImageContainer.innerHTML = ''; // Kosongkan dulu
-    if (iconElement) {
-      modalImageContainer.appendChild(iconElement.cloneNode(true));
-    }
-
-    // Isi daftar teknologi
-    const techListContainer = document.getElementById('modal-tech-list');
-    techListContainer.innerHTML = ''; // Kosongkan dulu
-    techArray.forEach(tech => {
-      const span = document.createElement('span');
-      span.textContent = tech.trim();
-      techListContainer.appendChild(span);
-    });
-
-    // Pastikan bagian teknologi dan footer terlihat
-    document.querySelector('.modal-tech').style.display = 'block';
-    document.querySelector('.modal-footer').style.display = 'flex';
-
-    // Kembalikan overlay gelap untuk proyek selesai
-    modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-  }
-  // --- AKHIR LOGIKA CERDAS ---
-
-  modal.style.display = 'block';
-  document.body.style.overflow = 'hidden';
+modal.style.display = 'block';
+document.body.style.overflow = 'hidden';
 }
 
 // Fungsi untuk menutup modal
 function closeModal() {
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
+modal.style.display = 'none';
+document.body.style.overflow = 'auto';
 }
 
 // Event Listener untuk setiap kartu proyek
 projectCards.forEach(card => {
-  card.addEventListener('click', () => {
-    // CEK KHUSUS UNTUK PORTFOLIO WEBSITE
-    if (card.dataset.title === "Portfolio Website") {
-      // Scroll langsung ke atas dengan halus
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return; // Hentikan fungsi di sini, jangan buka modal
-    }
+card.addEventListener('click', () => {
+const liveLink = card.dataset.live;
 
-    // Untuk proyek lainnya (kalau ada), buka modal seperti biasa
-    openModal(card);
-  });
+// Khusus untuk Portfolio Website, scroll ke atas
+if (card.dataset.title === "Portfolio Website") {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+return;
+}
+
+// JIKA LINK LIVE ADALAH LINK NYATA (bukan '#'), BUKA LANGSUNG DI TAB BARU
+if (liveLink && liveLink !== "#") {
+window.open(liveLink, '_blank');
+return; // Hentikan fungsi di sini
+}
+
+// UNTUK SISANYA (YANG LINK-NYA '#'), BUKA MODAL
+openModal(card);
+});
 });
 
 // Event Listener untuk tombol close dan overlay
@@ -421,7 +417,7 @@ modalOverlay.addEventListener('click', closeModal);
 
 // Event Listener untuk ESC key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
+if (e.key === 'Escape') closeModal();
 });
 
 // === PROJECT FILTER FUNCTIONALITY ===
@@ -474,4 +470,3 @@ filterButtons.forEach(button => {
     });
   });
 });
-
