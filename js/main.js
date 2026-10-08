@@ -1,10 +1,6 @@
-/* =========================
-   main.js — cleaned & fixed
-   ========================= */
 
-/* -------- typewriter -------- */
 const typewriterEl = document.querySelector(".typewriter");
-const typeWords = ["Student", "Web Developer", "Future Innovator", "Tech Enthusiast", "Digital Learner"]; // renamed to avoid collision
+const typeWords = ["Student", "Web Developer", "Future Innovator", "Tech Enthusiast", "Digital Learner"];
 let t_i = 0, t_j = 0, t_deleting = false;
 
 function typewriterLoop() {
@@ -32,13 +28,16 @@ function typewriterLoop() {
 }
 typewriterLoop();
 
-/* -------- animated text (per word) -------- */
-const animatedText = document.querySelector('.animated-text');
-if (animatedText) {
+const animatedTexts = document.querySelectorAll('.animated-text');
+const MAX_STAGGER_SECONDS = 0.6;
+
+animatedTexts.forEach((animatedText) => {
   const fullText = animatedText.textContent.trim();
   animatedText.textContent = "";
 
-  const words = fullText.split(" ");
+  const words = fullText.split(/\s+/);
+  const stepDelay = Math.min(0.08, MAX_STAGGER_SECONDS / Math.max(words.length - 1, 1));
+
   words.forEach((w, idx) => {
     const span = document.createElement("span");
     span.textContent = w;
@@ -46,7 +45,7 @@ if (animatedText) {
     span.style.display = "inline-block";
     span.style.transform = "translateY(10px)";
     span.style.transition = "all 0.4s ease";
-    span.style.transitionDelay = `${idx * 0.08}s`;
+    span.style.transitionDelay = `${idx * stepDelay}s`;
     animatedText.appendChild(span);
 
     if (idx < words.length - 1) {
@@ -71,14 +70,12 @@ if (animatedText) {
   }, { threshold: 0.3 });
 
   aboutObserver.observe(animatedText);
-}
+});
 
-/* -------- theme toggle (safe guards) -------- */
 const themeToggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
 const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-// Initialize theme safely
 (function initTheme() {
 if (!themeToggle) return;
 if (savedTheme === "light") {
@@ -88,7 +85,7 @@ themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
 document.body.classList.remove("light-mode");
 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
 } else {
-// default: dark
+
 document.body.classList.remove("light-mode");
 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
 }
@@ -96,7 +93,7 @@ themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
 
 if (themeToggle) {
 themeToggle.addEventListener("click", () => {
-// Tambah animasi rotasi
+
 themeToggle.style.transform = 'rotate(360deg)';
 setTimeout(() => {
 themeToggle.style.transform = 'rotate(0deg)';
@@ -109,7 +106,6 @@ localStorage.setItem("theme", isLight ? "light" : "dark");
 });
 }
 
-/* -------- neon-bg particles (hero canvas) -------- */
 (function neonParticleModule() {
   const neonCanvas = document.getElementById("neon-bg");
   if (!neonCanvas) return;
@@ -120,7 +116,7 @@ localStorage.setItem("theme", isLight ? "light" : "dark");
 
   function resizeNeon() {
     nW = neonCanvas.width = window.innerWidth;
-    // if hero exists use its height, otherwise use viewport height
+
     const hero = document.querySelector(".hero");
     nH = neonCanvas.height = hero ? hero.offsetHeight : window.innerHeight;
   }
@@ -164,28 +160,10 @@ localStorage.setItem("theme", isLight ? "light" : "dark");
   initNeon();
   neonAnimate();
 
-  // recreate when theme changes (optional)
   const neonObserver = new MutationObserver(() => initNeon());
   neonObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 })();
 
-/* -------- project card 3D tilt (safe selection) -------- */
-document.querySelectorAll(".project-card").forEach(card => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2, centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * 10;
-    const rotateY = ((x - centerX) / centerX) * -10;
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-  });
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  });
-});
-
-/* -------- hamburger menu (guarded) -------- */
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 if (hamburger && navLinks) {
@@ -201,7 +179,6 @@ if (hamburger && navLinks) {
   });
 }
 
-/* -------- scroll reveal -------- */
 function scrollReveal() {
   const reveals = document.querySelectorAll(".reveal");
   const triggerBottom = window.innerHeight * 0.85;
@@ -218,16 +195,14 @@ function scrollReveal() {
 window.addEventListener("scroll", scrollReveal);
 window.addEventListener("load", scrollReveal);
 
-/* -------- parallax movement -------- */
 window.addEventListener("scroll", () => {
   document.querySelectorAll(".parallax").forEach((el) => {
-    const speed = 0.3; // ubah untuk kecepatan gerak
+    const speed = 0.3;
     const offset = window.scrollY * speed;
     el.style.backgroundPositionY = `${offset}px`;
   });
 });
 
-/* -------- particle background (full-page, separate from neon) -------- */
 (function bgParticleModule() {
   const bgCanvas = document.getElementById("particleCanvas");
   if (!bgCanvas) return;
@@ -278,62 +253,59 @@ window.addEventListener("scroll", () => {
   }
   animateBg();
 
-  // recreate when theme changes
   const bgObserver = new MutationObserver(() => createBgParticles());
   bgObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 })();
 
-
-
-/* -------- FORM KONTAK HANDLER -------- */
 const contactForm = document.querySelector('#contact form');
 
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Cegah halaman reload
+    e.preventDefault();
 
-    // Ambil data dari form
     const formData = new FormData(this);
 
-    // Tampilkan loading state di tombol
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Mengirim...';
     submitBtn.disabled = true;
 
-    // Kirim data menggunakan fetch API ke file PHP kita
-    fetch('api/send.email.php', {
+    const responseBox = document.getElementById('responseMessage');
+    fetch('send_email.php', {
       method: 'POST',
       body: formData
     })
-    .then(response => response.json()) // Baca response dari PHP
+    .then(response => response.json())
     .then(data => {
-      // Tampilkan alert berdasarkan hasil
-      alert(data.message);
+      if (responseBox) {
+        responseBox.textContent = data.message;
+        responseBox.className = data.success ? 'show success' : 'show error';
+      }
       if (data.success) {
-        this.reset(); // Kosongkan form jika berhasil
+        this.reset();
       }
     })
     .catch(error => {
-      // Jika terjadi error (misal koneksi gagal)
-      alert('Terjadi kesalahan. Silakan coba lagi.');
+
+      if (responseBox) {
+        responseBox.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+        responseBox.className = 'show error';
+      }
       console.error('Error:', error);
     })
     .finally(() => {
-      // Kembalikan tombol ke keadaan semula, berhasil atau gagal
+
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     });
   });
 }
 
-// === PROJECT MODAL FUNCTIONALITY ===
 const projectCards = document.querySelectorAll('.project-card');
 const modal = document.getElementById('project-modal');
 const modalOverlay = document.querySelector('.modal-overlay');
 const modalCloseBtn = document.querySelector('.modal-close-btn');
 
-// Fungsi untuk membuka modal
 function openModal(card) {
 const title = card.dataset.title;
 const description = card.dataset.description;
@@ -342,20 +314,17 @@ const githubLink = card.dataset.github;
 const liveLink = card.dataset.live;
 const iconElement = card.querySelector('.project-image i');
 
-// Set modal content dari data di HTML
 document.getElementById('modal-title').textContent = title;
 document.getElementById('modal-description').textContent = description;
 document.getElementById('modal-github-link').href = githubLink;
 document.getElementById('modal-live-link').href = liveLink;
 
-// Tampilkan ikon dari kartu
 const modalImageContainer = document.getElementById('modal-image');
 modalImageContainer.innerHTML = '';
 if (iconElement) {
 modalImageContainer.appendChild(iconElement.cloneNode(true));
 }
 
-// Isi daftar teknologi
 const techListContainer = document.getElementById('modal-tech-list');
 techListContainer.innerHTML = '';
 techArray.forEach(tech => {
@@ -364,18 +333,17 @@ span.textContent = tech.trim();
 techListContainer.appendChild(span);
 });
 
-// --- Cek apakah ini proyek "Sedang Dikerjakan" ---
 if (title === "Sedang Dikerjakan") {
-// Sembunyikan bagian teknologi, tapi tampilkan footer untuk link live
+
 document.querySelector('.modal-tech').style.display = 'none';
 document.querySelector('.modal-footer').style.display = 'flex';
-// Buat overlay lebih terang
+
 modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
 } else {
-// Tampilkan semua bagian untuk proyek lain
+
 document.querySelector('.modal-tech').style.display = 'block';
 document.querySelector('.modal-footer').style.display = 'flex';
-// Kembalikan overlay gelap
+
 modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
 }
 
@@ -383,82 +351,67 @@ modal.style.display = 'block';
 document.body.style.overflow = 'hidden';
 }
 
-// Fungsi untuk menutup modal
 function closeModal() {
 modal.style.display = 'none';
 document.body.style.overflow = 'auto';
 }
 
-// Event Listener untuk setiap kartu proyek
 projectCards.forEach(card => {
 card.addEventListener('click', () => {
 const liveLink = card.dataset.live;
 
-// Khusus untuk Portfolio Website, scroll ke atas
 if (card.dataset.title === "Portfolio Website") {
 window.scrollTo({ top: 0, behavior: 'smooth' });
 return;
 }
 
-// JIKA LINK LIVE ADALAH LINK NYATA (bukan '#'), BUKA LANGSUNG DI TAB BARU
 if (liveLink && liveLink !== "#") {
 window.open(liveLink, '_blank');
-return; // Hentikan fungsi di sini
+return;
 }
 
-// UNTUK SISANYA (YANG LINK-NYA '#'), BUKA MODAL
 openModal(card);
 });
 });
 
-// Event Listener untuk tombol close dan overlay
 modalCloseBtn.addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', closeModal);
 
-// Event Listener untuk ESC key
 document.addEventListener('keydown', (e) => {
 if (e.key === 'Escape') closeModal();
 });
 
-// === PROJECT FILTER FUNCTIONALITY ===
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectItems = document.querySelectorAll('.project-item');
 
-// Note: projectCards is already declared in the modal section above
-
-// Tambahkan event listener ke setiap tombol filter
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // 1. Update tombol yang aktif
+
     const activeBtn = document.querySelector('.filter-btn.active');
     if (activeBtn) {
       activeBtn.classList.remove('active');
     }
     button.classList.add('active');
 
-    // 2. Ambil kategori filter yang dipilih
     const filter = button.getAttribute('data-filter');
 
-    // 3. Loop melalui semua kartu proyek
     projectCards.forEach(card => {
       const category = card.getAttribute('data-category');
 
-      // 4. Tampilkan atau sembunyikan kartu
       if (filter === 'all' || category === filter) {
-        // Tampilkan kartu dengan animasi
+
         card.style.display = 'block';
-        // Refresh animasi AOS agar muncul lagi
+
         setTimeout(() => {
           card.classList.add('reveal');
           card.classList.add('active');
         }, 10);
       } else {
-        // Sembunyikan kartu
+
         card.style.display = 'none';
       }
     });
 
-    // 5. Filter juga project-simple-list items
     projectItems.forEach(item => {
       const category = item.getAttribute('data-category');
 
@@ -470,3 +423,4 @@ filterButtons.forEach(button => {
     });
   });
 });
+
