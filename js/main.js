@@ -360,7 +360,7 @@ projectCards.forEach(card => {
 card.addEventListener('click', () => {
 const liveLink = card.dataset.live;
 
-if (card.dataset.title === "Portfolio Website") {
+if (card.dataset.title === "Portfolio V1") {
 window.scrollTo({ top: 0, behavior: 'smooth' });
 return;
 }
