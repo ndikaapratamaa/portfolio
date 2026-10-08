@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andika Pratama - Portfolio</title>
-  <!-- PERBAIKAN: Menghapus /portfolio/ di awal path -->
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/jpg" href="assets/images/foto-pribadi.jpg">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
@@ -13,17 +13,7 @@
 <body>
   <canvas id="particleCanvas"></canvas>
 
-  <!-- === PRELOADER === -->
-  <!-- <div id="preloader">
-    <div class="loader">
-      <span class="loader-text">welcome!</span>
-      <div class="loader-bar"></div>
-    </div>
-  </div> -->
-
-  <!-- Navbar -->
   <header>
-    <h1 class="logo"><span class="logo-text">Andika</span><span>Dev</span></h1>
     <nav>
       <ul id="nav-links">
         <li><a href="#home" class="active">Home</a></li>
@@ -43,7 +33,6 @@
     </div>
   </header>
 
-  <!-- Home -->
   <section id="home" class="hero parallax">
     <canvas id="neon-bg"></canvas>
     <div class="content" data-aos="fade-right">
@@ -51,7 +40,6 @@
       <h3 class="typewriter"></h3>
       <p>Student | Web Developer | Future Innovator</p>
 
-      <!-- Hero Social Links -->
       <div class="hero-social">
         <a href="https://www.instagram.com/ndikaaprtmaaa/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/@ndikaacyy_" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
@@ -68,23 +56,16 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about" class="section reveal">
     <h2 class="section-title">About Me</h2>
     <p class="animated-text">
-      Halo! Saya <strong>Andika Pratama</strong>, seorang pelajar dan pengembang web yang bersemangat untuk menciptakan tampilan digital yang menarik, responsif, dan bermakna.
-      Saya mulai tertarik pada dunia pemrograman sejak duduk di bangku sekolah menengah, dan sejak saat itu saya terus mengasah kemampuan saya dalam
-      <strong>HTML</strong>, <strong>CSS</strong>, dan <strong>JavaScript</strong> untuk membangun pengalaman web yang interaktif.
-
-      Saya juga gemar mempelajari <strong>Python</strong> untuk backend dan logika program, serta menggunakan framework modern seperti <strong>React</strong>
-      untuk menciptakan tampilan yang dinamis. Tujuan saya sederhana — membuat website yang tidak hanya terlihat bagus, tapi juga memberikan pengalaman yang menyenangkan bagi pengguna.
-
-      Di luar dunia coding, saya senang mengeksplorasi desain UI/UX, membaca artikel teknologi, dan mengerjakan proyek-proyek kecil yang menantang kemampuan saya.
-      Saya percaya bahwa setiap baris kode adalah langkah kecil menuju hasil besar yang berarti.
+      Halo! Saya <strong>Andika Pratama</strong>, pelajar dan pengembang web yang senang menciptakan tampilan digital yang menarik dan responsif. Sejak SMK saya mengasah kemampuan di <strong>HTML</strong>, <strong>CSS</strong>, dan <strong>JavaScript</strong>, lalu berkembang ke <strong>Python</strong> dan <strong>React</strong> untuk membangun pengalaman web yang lebih dinamis.
+    </p>
+    <p class="animated-text">
+      Di luar coding, saya suka eksplorasi UI/UX dan mengerjakan proyek-proyek kecil yang menantang. Bagi saya, setiap baris kode adalah langkah kecil menuju hasil yang berarti.
     </p>
   </section>
 
-  <!-- Skills -->
   <section id="skills" class="section reveal">
     <h2 class="section-title">My Skills</h2>
     <div class="skills-container">
@@ -94,7 +75,6 @@
     </div>
   </section>
 
-  <!-- Projects -->
   <section id="projects" class="section reveal parallax" style="background-image: url('assets/images/background.jpg');">
     <h2 class="section-title">Projects</h2>
 
@@ -108,7 +88,7 @@
     </div>
 
     <div class="project-list">
-<!-- Kotak Portfolio Website -->
+
 <div class="project-card reveal"
 data-category="portfolio"
 data-title="Portfolio Website"
@@ -130,7 +110,6 @@ data-live="index.html">
 </div>
 </div>
 
-<!-- Kotak Aplikasi Cuaca -->
 <div class="project-card reveal"
 data-category="aplikasi"
 data-title="Sedang Dikerjakan"
@@ -152,83 +131,54 @@ data-live="https://ndikaapratamaa.github.io/cuaca/">
 </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="section reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Kesan & Masukan</h2>
+  <section id="journey" class="section reveal">
+    <h2 class="section-title">My Journey</h2>
+    <div class="journey-container">
+      <div class="journey-item reveal">
+        <i class="fas fa-book"></i>
+        <p>Mulai belajar coding otodidak sejak duduk di bangku sekolah menengah.</p>
       </div>
-
-      <div class="testimonial-slider">
-        <div class="testimonial-card active">
-          <p>"Andika masih di tahap belajar, tapi kelihatan serius banget kalau ngerjain sesuatu. Kadang hasilnya belum rapi, tapi terus ada kemajuan di setiap proyeknya."</p>
-          <h4>- Rafi</h4>
-        </div>
-
-        <div class="testimonial-card">
-          <p>"Kalau dilihat dari cara kerjanya, Andika punya rasa penasaran tinggi. Kadang suka bingung di awal, tapi begitu nemu caranya, dia cepat berkembang dan hasilnya lumayan bagus."</p>
-          <h4>- Dimas</h4>
-        </div>
-
-        <div class="testimonial-card">
-          <p>"Sekarang hasil kerja Andika udah mulai kelihatan rapi dan menarik. Cara dia nyusun tampilan web makin matang. Kalau terus dikembangin, bisa jadi web dev yang keren banget nanti."</p>
-          <h4>- Arya</h4>
-        </div>
+      <div class="journey-item reveal">
+        <i class="fas fa-laptop-code"></i>
+        <p>Terus berlatih membangun website dengan HTML, CSS, dan JavaScript.</p>
       </div>
-
-      <div class="testimonial-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+      <div class="journey-item reveal">
+        <i class="fas fa-rocket"></i>
+        <p>Sekarang terus belajar hal baru untuk jadi web developer yang lebih baik.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="section reveal">
     <h2 class="section-title">Contact</h2>
     <div class="contact-container">
-      <!-- Contact Info Column -->
       <div class="contact-info" data-aos="fade-right">
-        <h3>Hubungi Saya</h3>
-        <p>Punya ide proyek yang menarik? Atau sekadar ingin berkenalan? Saya siap untuk mendengarkan dan membantu mewujudkan visi digital Anda.</p>
-
+        <h3>Mari Terhubung</h3>
+        <p>Senang kamu sudah sampai di bagian ini. Portfolio ini masih sederhana, dibuat sambil terus belajar mengembangkan kemampuan di dunia web development.</p>
         <div class="info-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:andiikapratamaa7@gmail.com">andiikapratamaa7@gmail.com</a>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-phone"></i>
-          <a href="tel:+6283846457614">+62 838-4645-7614</a>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-map-marker-alt"></i>
+          <i class="fas fa-location-dot"></i>
           <span>Pacitan, Indonesia</span>
         </div>
       </div>
-
-      <!-- Contact Form Column -->
       <div class="contact-form-wrapper" data-aos="fade-left">
-        <form id="contactForm" action="send_email.php" method="POST">
+        <form id="contactForm">
           <div class="form-group">
+            <input type="text" name="Nama" id="Nama" placeholder=" " required>
+            <label for="Nama">Nama</label>
             <i class="fas fa-user"></i>
-            <input type="text" id="nama" name="Nama" required>
-            <label for="nama">Your Name</label>
           </div>
           <div class="form-group">
+            <input type="email" name="Email" id="Email" placeholder=" " required>
+            <label for="Email">Email</label>
             <i class="fas fa-envelope"></i>
-            <input type="email" id="email" name="Email" required>
-            <label for="email">Your Email</label>
           </div>
           <div class="form-group">
-            <i class="fas fa-comment-dots"></i>
-            <textarea id="pesan" name="Pesan" rows="5" required></textarea>
-            <label for="pesan">Your Message</label>
-            <span class="char-count">0 / 300</span>
+            <textarea name="Pesan" id="Pesan" placeholder=" " required></textarea>
+            <label for="Pesan">Pesan</label>
+            <i class="fas fa-comment"></i>
           </div>
           <button type="submit" class="btn-submit">
-            <span>Send Message</span>
-            <i class="fas fa-paper-plane"></i>
+            Kirim Pesan <i class="fas fa-paper-plane"></i>
           </button>
           <div id="responseMessage"></div>
         </form>
@@ -236,7 +186,6 @@ data-live="https://ndikaapratamaa.github.io/cuaca/">
     </div>
   </section>
 
-  <!-- === PROJECT DETAIL MODAL === -->
   <div id="project-modal" class="modal">
     <div class="modal-overlay"></div>
     <div class="modal-content">
@@ -259,9 +208,6 @@ data-live="https://ndikaapratamaa.github.io/cuaca/">
     </div>
   </div>
 
-
-
-  <!-- === FOOTER === -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-info">
@@ -284,22 +230,16 @@ data-live="https://ndikaapratamaa.github.io/cuaca/">
     </div>
   </footer>
 
-  <!-- === SCROLL TO TOP === -->
   <button id="scrollTopBtn" class="scroll-top"><i class="fas fa-arrow-up"></i></button>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- PERBAIKAN: Menghapus /portfolio/ di awal path -->
+
   <script src="js/main.js"></script>
   <script src="js/script.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
 
-
-
-
-
-  <!-- === CUSTOM CURSOR === -->
   <div class="custom-cursor"></div>
 </body>
 </html>
