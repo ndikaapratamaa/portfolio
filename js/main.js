@@ -264,6 +264,9 @@ if (contactForm) {
     e.preventDefault();
 
     const formData = new FormData(this);
+    formData.append('access_key', 'dc4997a3-02b4-44ac-ad4a-f3fb372487c5');
+    formData.append('subject', 'Ada Pesan Baru dari Portfolio Website');
+    formData.append('from_name', 'Portfolio Website');
 
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
@@ -271,14 +274,14 @@ if (contactForm) {
     submitBtn.disabled = true;
 
     const responseBox = document.getElementById('responseMessage');
-    fetch('send_email.php', {
+    fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       body: formData
     })
     .then(response => response.json())
     .then(data => {
       if (responseBox) {
-        responseBox.textContent = data.message;
+        responseBox.textContent = data.success ? 'Pesan berhasil terkirim! Saya akan segera balas.' : 'Maaf, pesan gagal terkirim. Coba lagi nanti ya.';
         responseBox.className = data.success ? 'show success' : 'show error';
       }
       if (data.success) {
